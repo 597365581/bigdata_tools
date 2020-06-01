@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration status="WARN" monitorInterval="30">
+    <properties>
+        <Property name="fileName">/opt/logs</Property>
+        <Property name="infoLogFile">mongodb-tools</Property>
+        <Property name="fileGz">/opt/logs</Property>
+        <Property name="PID">%clr{${sys:PID}}</Property>
+        <Property name="LOG_PATTERN">%d{yy-MM-dd HH:mm:ss} %-5level %class{1.} %L - %m%n%xwEx</Property>
+    </properties>
+    <Appenders>
+
+
+        <!-- 输出控制台日志的配置 -->
+        <Console name="console" target="SYSTEM_OUT">
+            <!--控制台只输出level及以上级别的信息（onMatch），其他的直接拒绝（onMismatch） -->
+            <ThresholdFilter level="debug" onMatch="ACCEPT" onMismatch="DENY" />
+            <!-- 输出日志的格式 -->
+            <PatternLayout pattern="${LOG_PATTERN}" />
+        </Console>
+        <RollingRandomAccessFile name="infoLogFile"
+                                 fileName="${fileName}/${infoLogFile}_info.log" immediateFlush="false"
+                                 filePattern="${fileGz}/$${date:yyyy-MM}_%d{yyyy-MM-dd}-%i.${infoLogFile}_info.gz">
+            <PatternLayout pattern="${LOG_PATTERN}" />
+            <Policies>
+                <SizeBasedTriggeringPolicy size="50 MB" />
+            </Policies>
+            <Filters>
+                <!-- 只记录info和warn级别信息 -->
+                <ThresholdFilter level="error" onMatch="DENY" onMismatch="NEUTRAL" />
+                <ThresholdFilter level="info" onMatch="ACCEPT" onMismatch="DENY" />
+            </Filters>
+            <!-- 指定每天的最大压缩包个数，默认7个，超过了会覆盖之前的 -->
+            <DefaultRolloverStrategy max="50" />
+        </RollingRandomAccessFile>
+    </Appenders>
+    <Loggers>
+        <Root level="debug" includeLocation="true">
+            <AppenderRef ref="console" />
+            <AppenderRef ref="infoLogFile" />
+        </Root>
+        <AsyncRoot level="debug" includeLocation="true">
+            <AppenderRef ref="console" />
+            <AppenderRef ref="infoLogFile" />
+        </AsyncRoot>
+    </Loggers>
+</configuration>
