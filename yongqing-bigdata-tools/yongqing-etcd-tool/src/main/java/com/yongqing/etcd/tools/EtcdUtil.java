@@ -14,6 +14,7 @@ import com.coreos.jetcd.options.PutOption;
 import com.coreos.jetcd.options.WatchOption;
 
 import com.yongqing.etcd.action.Action;
+import com.yongqing.etcd.action.DefaultSingletonEtcdSubject;
 import com.yongqing.etcd.exec.Exec;
 import com.yongqing.etcd.tools.core.CommonUtil;
 import lombok.extern.log4j.Log4j2;
@@ -243,6 +244,7 @@ public class EtcdUtil {
      * 本地某个key指发生了变化后，需要执行的操作
      */
     public static void doAction(Properties oldProp, Properties newProp) {
+        DefaultSingletonEtcdSubject.getDefaultSingletonEtcdSubject().setProperties(oldProp,newProp);
         //通过反射动态获取实现Action接口的实现类，然后执行实现类里面的doAction
         try {
             CommonUtil.getAllActionSubClass("com.yongqing.etcd.action.Action").forEach(actionClass -> {
