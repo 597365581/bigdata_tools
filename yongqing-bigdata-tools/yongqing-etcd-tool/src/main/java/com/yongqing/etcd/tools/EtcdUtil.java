@@ -71,7 +71,7 @@ public class EtcdUtil {
                     }
                 }
             }
-            client = Client.builder().endpoints(prop.getProperty("endpoints")).build();
+            client = Client.builder().endpoints(prop.getProperty("endpoints").split(",")).build();
         }
         return client;
     }
