@@ -430,6 +430,12 @@ public class DateCommonUtil {
         c.add(Calendar.MONTH, -beforeMonth);
         return c.getTime();
     }
+    public static Date getAfterMonth(Date dateTime, Integer afterMonth){
+        Calendar c = Calendar.getInstance();
+        c.setTime(dateTime);
+        c.add(Calendar.MONTH, +afterMonth);
+        return c.getTime();
+    }
     /**
      * 判断失效时间
      * @param requestUnixTimestamp unix时间戳
