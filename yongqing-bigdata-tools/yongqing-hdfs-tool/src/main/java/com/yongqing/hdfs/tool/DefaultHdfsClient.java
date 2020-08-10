@@ -66,13 +66,4 @@ public class DefaultHdfsClient {
             }
         }
     }
-
-//    public static void main(String[] args) throws  Exception {
-//        //DefaultHdfsClient.getHdfsClient().appendToFileByWriteChars("/tmp/zyq/","test3.txt",100,"\n20000000000000\n\n3000000000000000000000000000");
-//       // System.out.println( "============"+DefaultHdfsClient.getHdfsClient().getFSDataInputStreamByReadLine("/tmp/zyq/","test3.txt"));
-//        DefaultHdfsClient.getHdfsClient().listFiles("/tmp",false).forEach(str->{
-//            System.out.println(str);
-//        });
-//        DefaultHdfsClient.getHdfsClient().close();
-//    }
 }
