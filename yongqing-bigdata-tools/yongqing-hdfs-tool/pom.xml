@@ -13,7 +13,7 @@
     <version>1.0-SNAPSHOT</version>
     <properties>
         <hadoop.version>2.7.3</hadoop.version>
-        <org.apache.logging.log4j.version>2.13.3</org.apache.logging.log4j.version>
+        <org.apache.logging.log4j.version>2.15.0</org.apache.logging.log4j.version>
         <org.projectlombok.version>1.16.16</org.projectlombok.version>
     </properties>
     <dependencies>
