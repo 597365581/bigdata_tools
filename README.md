@@ -1,6 +1,8 @@
 # yongqing
 张永清的开放大数据工具包项目
 </br>
+yongqing-jdbc-common
+</br>
 yongqing-bigdata-business-log-flume
 </br>
 yongqing-bigdata-tools-common
